@@ -1,0 +1,5 @@
+-
+  name: mail something
+  hosts: localhost
+  tasks:
+  - command: echo This is working

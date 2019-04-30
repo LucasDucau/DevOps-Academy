@@ -12,7 +12,34 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "base"
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.hostname="ansible.controller"
+  config.vm.provider "virtualbox" do |vb| #forces virtualbox
+#    vb.gui=true #starts GUI
+    vb.memory="4096" #ram allocated
+  end
+  config.vm.provision "ansible_local" do |ansible|
+  ansible.playbook = "playbook.yml"
+  #a playbook must be provided for the installation to begin
+  #using an empty playbook will display an error but the installation completes without problems
+  ansible.install_mode = "default"
+#  ansible.version = "2.2.1.0"
+  end
+  config.vm.provision "docker" do |d|
+#    d.pull_images "php"
+#    d.pull_images "golang"
+  end
+  config.vm.provision "docker_compose" do |dc|
+    dc.yml = "/vagrant/docker-compose.yml"
+    dc.rebuild = true
+
+  end
+
+
+
+
+
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
