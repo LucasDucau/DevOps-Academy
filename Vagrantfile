@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
 #  ansible.version = "2.2.1.0"
   end
   config.vm.provision "docker" do |d|
-#    d.pull_images "php"
-#    d.pull_images "golang"
+    d.pull_images "php"
+    d.pull_images "golang"
   end
   config.vm.provision "docker_compose" do |dc|
     dc.yml = "/vagrant/docker-compose.yml"
