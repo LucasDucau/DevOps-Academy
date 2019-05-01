@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network", ip: "192.168.0.17"
   config.vm.hostname="ansible.controller"
   config.vm.provider "virtualbox" do |vb| #forces virtualbox
 #    vb.gui=true #starts GUI
@@ -26,14 +27,15 @@ Vagrant.configure("2") do |config|
 #  ansible.version = "2.2.1.0"
   end
   config.vm.provision "docker" do |d|
-    d.pull_images "php"
-    d.pull_images "golang"
+  #  d.pull_images "php"
+  #  d.pull_images "golang"
   end
-  config.vm.provision "docker_compose" do |dc|
-    dc.yml = "/vagrant/docker-compose.yml"
-    dc.rebuild = true
+  config.vm.provision :docker_compose,
+    yml: "/vagrant/docker-compose.yml",
+    run: "always"
 
-  end
+
+
 
 
 

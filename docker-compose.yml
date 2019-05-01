@@ -7,9 +7,3 @@ services:
       - 5002:80
     volumes:
       - ./php:/php-app
-  golang:
-    build: ./golang
-    ports:
-      - 5000:80
-    volumes:
-      - ./golang:/golang-api
