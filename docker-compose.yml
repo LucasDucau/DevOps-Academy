@@ -11,7 +11,7 @@ services:
     image: wordpress
     restart: always
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
@@ -26,3 +26,11 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+  jenkins:
+    build: ./jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - /jenkins_home/:/var/jenkins_home/
