@@ -1,3 +1,9 @@
+$script = <<-SCRIPT
+mkdir /jenkins_home/
+chown -R 1000 /jenkins_home/
+SCRIPT
+
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -30,9 +36,12 @@ Vagrant.configure("2") do |config|
   #  d.pull_images "php"
   #  d.pull_images "golang"
   end
+  config.vm.provision "shell",
+    inline: $script
   config.vm.provision :docker_compose,
     yml: "/vagrant/docker-compose.yml",
     run: "always"
+
 
 
 

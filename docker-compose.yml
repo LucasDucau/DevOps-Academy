@@ -7,16 +7,22 @@ services:
       - 5002:80
     volumes:
       - ./php:/php-app
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.9
   wordpress:
     image: wordpress
     restart: always
     ports:
-      - 8081:80
+      - 8080:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.8
 
   db:
     image: mysql:5.7
@@ -26,11 +32,23 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.7
 
   jenkins:
     build: ./jenkins
     ports:
-      - 8080:8080
+      - 8050:8080
       - 50000:50000
     volumes:
       - /jenkins_home/:/var/jenkins_home/
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.6
+
+networks:
+  all_connected:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
