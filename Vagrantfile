@@ -1,8 +1,15 @@
 $script = <<-SCRIPT
 mkdir /jenkins_home/
 chown -R 1000 /jenkins_home/
+sudo apt-get update
+sudo apt-get install python-pip -y
+sudo pip install docker-py
 SCRIPT
 
+#$script_python = <<-SCRIPT
+#sudo apt-get update
+#sudo apt-get install docker-py -y
+#SCRIPT
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -19,7 +26,9 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/xenial64"
-  config.vm.network "private_network", ip: "192.168.227.154"
+#  config.vm.network "public_network", ip: "192.168.227.154"
+  config.vm.network "public_network"
+  #, ip: "10.210.8.147"
   config.vm.hostname="ansible.controller"
   config.vm.provider "virtualbox" do |vb| #forces virtualbox
 #    vb.gui=true #starts GUI
@@ -41,6 +50,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :docker_compose,
     yml: "/vagrant/docker-compose.yml",
     run: "always"
+#  config.vm.provision "shell",
+#    inline: $script_python
 
 
 
