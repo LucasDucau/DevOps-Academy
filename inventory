@@ -1,0 +1,5 @@
+[containers]
+php ansible_host=172.20.0.9
+wordpress ansible_host=172.20.0.8
+sql ansible_host=172.20.0.7
+jenkins ansible_host=172.20.0.6

@@ -1,5 +1,9 @@
 -
-  name: mail something
+  name: play
   hosts: localhost
   tasks:
-  - command: echo This is working
+    - command: echo HELLO
+#  -  name: make mkdir
+#     docker_container:
+#       name: vagrant_php_1
+#       command: mkdir /qqqq
