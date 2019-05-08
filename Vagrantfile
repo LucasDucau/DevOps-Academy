@@ -34,13 +34,7 @@ Vagrant.configure("2") do |config|
 #    vb.gui=true #starts GUI
     vb.memory="4096" #ram allocated
   end
-  config.vm.provision "ansible_local" do |ansible|
-  ansible.playbook = "playbook.yml"
-  #a playbook must be provided for the installation to begin
-  #using an empty playbook will display an error but the installation completes without problems
-  ansible.install_mode = "default"
-#  ansible.version = "2.2.1.0"
-  end
+
   config.vm.provision "docker" do |d|
   #  d.pull_images "php"
   #  d.pull_images "golang"
@@ -53,8 +47,17 @@ Vagrant.configure("2") do |config|
 #  config.vm.provision "shell",
 #    inline: $script_python
 
-
-
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "playbook.yml"
+    #a playbook must be provided for the installation to begin
+    #using an empty playbook will display an error but the installation completes without problems
+    ansible.install_mode = "default"
+    #  ansible.version = "2.2.1.0"
+  end
+  config.vm.provision "ansible" do |ans|
+    ans.playbook = "playbook.yml"
+  #  ans.inventory_path = "inventory.txt"
+  end
 
 
 
