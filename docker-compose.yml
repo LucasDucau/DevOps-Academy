@@ -6,7 +6,7 @@ services:
     ports:
       - 5002:80
     volumes:
-      - ./php:/php-app
+      - /php:/php-app
     networks:
       all_connected:
         ipv4_address: 172.20.0.9

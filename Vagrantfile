@@ -54,10 +54,10 @@ Vagrant.configure("2") do |config|
     ansible.install_mode = "default"
     #  ansible.version = "2.2.1.0"
   end
-  config.vm.provision "ansible" do |ans|
-    ans.playbook = "playbook.yml"
+  #config.vm.provision "ansible" do |ans|
+  #  ans.playbook = "playbook.yml"
   #  ans.inventory_path = "inventory.txt"
-  end
+  #end
 
 
 
