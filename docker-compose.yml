@@ -51,6 +51,17 @@ services:
       all_connected:
         ipv4_address: 172.20.0.6
 
+  golang:
+    #image: golang
+    build: ./golang
+    ports:
+      - 8081:8081
+    volumes:
+      - /vagrant/golang/v2/:/api/
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.10
+
 networks:
   all_connected:
     ipam:
