@@ -16,7 +16,7 @@ services:
     volumes:
       - /wordpress:/wordpress-app
     ports:
-      - 8080:80
+      - 8085:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
@@ -40,16 +40,16 @@ services:
       all_connected:
         ipv4_address: 172.20.0.7
 
-  jenkins:
-    build: ./jenkins
-    ports:
-      - 8050:8080
-      - 50000:50000
-    volumes:
-      - /jenkins_home/:/var/jenkins_home/
-    networks:
-      all_connected:
-        ipv4_address: 172.20.0.6
+#  jenkins:
+#    build: ./jenkins
+#    ports:
+#      - 8050:8080
+#      - 50000:50000
+#    volumes:
+#      - /jenkins_home/:/var/jenkins_home/
+#    networks:
+#      all_connected:
+#        ipv4_address: 172.20.0.6
 
   golang:
     #image: golang

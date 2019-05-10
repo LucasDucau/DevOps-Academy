@@ -1,8 +1,12 @@
 -
   name: play
-  hosts: localhost
-  tasks:
-    - command: echo HELLO
+  hosts: 127.0.0.1
+  connection: local
+  
+#  name: play
+#  hosts: localhost
+#  tasks:
+#    - command: echo HELLO
 #  -  name: make mkdir
 #     docker_container:
 #       name: vagrant_php_1
