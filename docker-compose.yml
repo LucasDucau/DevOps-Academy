@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   php:
@@ -11,31 +11,29 @@ services:
       all_connected:
         ipv4_address: 172.20.0.9
   wordpress:
-    image: wordpress
-    restart: always
+    build: ./wordpress
     volumes:
       - /wordpress:/wordpress-app
     ports:
       - 8085:80
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
+#    environment:
+#      WORDPRESS_DB_HOST: db
+#      WORDPRESS_DB_USER: exampleuser
+#      WORDPRESS_DB_PASSWORD: examplepass
+#      WORDPRESS_DB_NAME: exampledb
     networks:
       all_connected:
         ipv4_address: 172.20.0.8
 
   db:
-    image: mysql:5.7
-    restart: always
+    build: ./sql
     volumes:
       - /sql:/sql-app
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+#    environment:
+#      MYSQL_DATABASE: exampledb
+#      MYSQL_USER: exampleuser
+#      MYSQL_PASSWORD: examplepass
+#      MYSQL_RANDOM_ROOT_PASSWORD: '1'
     networks:
       all_connected:
         ipv4_address: 172.20.0.7

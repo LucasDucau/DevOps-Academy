@@ -1,8 +1,62 @@
--
-  name: play
-  hosts: 127.0.0.1
-  connection: local
-  
+---
+##################################################
+# This standalone playbook uses Docker's official Ubuntu 18.04 repository
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+##################################################
+
+- hosts: all
+  become: true
+#  vars:
+#    ansible_python_interpreter: "/usr/bin/env python3"
+
+  tasks:
+#  - name: apt-get update
+#    apt:
+#      update_cache: yes
+
+  - name: "APT - Add Docker GPG key"
+    apt_key:
+#      url: https://download.docker.com/linux/ubuntu/dists/bionic/stable/binary-amd64/Release.gpg
+#      url: https://download.docker.com/linux/ubuntu/gpg
+      file: /vagrant/gpg
+      state: present
+#      update_cache: key
+#  - name: add apt-key
+#    shell:
+#      wget -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+  - name: "APT - Add Docker repository"
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+      state: present
+      filename: docker
+
+  - name: "APT - install misc packages"
+    apt:
+      name: "{{ item }}"
+      update_cache: yes
+    with_items:
+      - "aptitude"
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "curl"
+      - "software-properties-common"
+
+  - name: "APT - install 'docker-ce'"
+    apt:
+      name: "docker-ce"
+      update_cache: yes
+  - name: "update docker-compose"
+    apt:
+      name: "docker-compose"
+      update_cache: yes
+      state: latest
+
+  - name: "test"
+    docker_service:
+      project_src: /vagrant/
+      state: present
+
 #  name: play
 #  hosts: localhost
 #  tasks:

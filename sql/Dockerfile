@@ -1,0 +1,6 @@
+FROM mysql:5.7
+WORKDIR sql-app
+ENV MYSQL_DATABSE="exampledb"
+ENV MYSQL_USER="exampleuser"
+ENV MYSQL_PASSWORD="examplepass"
+ENV MYSQL_RANDOM_ROOT_PASSWORD='1'

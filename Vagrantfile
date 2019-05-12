@@ -2,8 +2,7 @@ $script = <<-SCRIPT
 sudo apt-get update
 sudo apt-get install python-pip -y
 sudo pip install docker-py
-sudo cat /etc/hosts | head -n 1 >> /etc/ansible/hosts
-sudo ansible-playbook /vagrant/playbook.yml
+
 sudo apt-get install openjdk-8-jdk -y
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
@@ -13,6 +12,11 @@ systemctl enable jenkins
 sudo ufw allow 8080
 
 SCRIPT
+
+
+#sudo cat /etc/hosts | head -n 1 >> /etc/ansible/hosts
+#sudo ansible-playbook /vagrant/playbook.yml
+
 
 #mkdir /jenkins_home/
 #chown -R 1000 /jenkins_home/
@@ -32,19 +36,13 @@ Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "playbook.yml"
-  #  ansible.inventory_path = "inventory"
-    #a playbook must be provided for the installation to begin
-    #using an empty playbook will display an error but the installation completes without problems
-    ansible.install_mode = "default"
-    #  ansible.version = "2.2.1.0"
-  end
+
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 #  config.vm.network "public_network", ip: "192.168.227.154"
-  config.vm.network "public_network", bridge: "Intel(R) 82579LM Gigabit Network Connection"
+  config.vm.network "public_network"
+  #, bridge: "Intel(R) 82579LM Gigabit Network Connection"
 
   #, ip: "10.210.8.147"
   config.vm.hostname="ansible.controller"
@@ -52,16 +50,24 @@ Vagrant.configure("2") do |config|
 #    vb.gui=true #starts GUI
     vb.memory="4096" #ram allocated
   end
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "playbook.yml"
+  #  ansible.inventory_path = "inventory"
+    #a playbook must be provided for the installation to begin
+    #using an empty playbook will display an error but the installation completes without problems
+  #  ansible.install_mode = "default"
+    #  ansible.version = "2.2.1.0"
+  end
 
-  config.vm.provision "docker" do |d|
+#  config.vm.provision "docker" do |d|
   #  d.pull_images "php"
   #  d.pull_images "golang"
-  end
-  config.vm.provision "shell",
-    inline: $script
-  config.vm.provision :docker_compose,
-    yml: "/vagrant/docker-compose.yml",
-    run: "always"
+#  end
+#  config.vm.provision "shell",
+#    inline: $script
+#  config.vm.provision :docker_compose,
+#    yml: "/vagrant/docker-compose.yml",
+#    run: "always"
 #  config.vm.provision "shell",
 #    inline: $script_python
 

@@ -1,0 +1,6 @@
+FROM wordpress
+WORKDIR wordpress-app
+ENV WORDPRESS_DB_HOST="db"
+ENV WORDPRESS_DB_USER="exampleuser"
+ENV WORDPRESS_DB_PASSWORD="examplepass"
+ENV WORDPRESS_DB_NAME="exampledb"
