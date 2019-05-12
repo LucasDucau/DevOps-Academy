@@ -1,5 +1,6 @@
 localhost ansible_host=127.0.1.1
 test
+another
 
 [containers]
 php ansible_host=172.20.0.9
