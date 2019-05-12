@@ -52,11 +52,37 @@
       update_cache: yes
       state: latest
 
-  - name: "test"
+  - name: "docker-compose up"
     docker_service:
       project_src: /vagrant/
       state: present
 
+#  - name: "Install JDK"
+#    apt:
+#      name: "openjdk-8-jdk"
+#      update_cache: yes
+  - name: "install jdk through shell"
+    shell: sudo apt-get install openjdk-8-jdk -y
+
+  - name: "Add Jenkins key"
+    apt_key:
+      url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+      state: present
+
+  - name: "Add Jenkins repo"
+    apt_repository:
+      repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+      state: present
+
+  - name: "Install Jenkins"
+    apt:
+      name: "jenkins"
+      update_cache: yes
+
+  - name: "Ensure Jenkins is running"
+    service:
+      name: "jenkins"
+      state: "started"
 #  name: play
 #  hosts: localhost
 #  tasks:
