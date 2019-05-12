@@ -46,11 +46,12 @@
     apt:
       name: "docker-ce"
       update_cache: yes
+      
   - name: "update docker-compose"
     apt:
       name: "docker-compose"
       update_cache: yes
-      state: latest
+      state: present
 
   - name: "docker-compose up"
     docker_service:
