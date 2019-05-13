@@ -5,6 +5,7 @@ node {
         /* Let's make sure we have the repository cloned to our workspace */
 
         git(
+        branch: 'master'
         url: 'https://github.globant.com/lucas-ducau/DevOps-Academy.git',
         credentialsId: 'github-globant')
     }
