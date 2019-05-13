@@ -13,7 +13,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("php_qqqq:${env.BUILD_ID}","./php/")
+        app = docker.build("lucasducau/php_qqqq:${env.BUILD_ID}","./php/")
     }
 
     stage('Test image') {

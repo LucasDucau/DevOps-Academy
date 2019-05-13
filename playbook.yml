@@ -41,6 +41,8 @@
       - "ca-certificates"
       - "curl"
       - "software-properties-common"
+      - "gnupg2"
+      - "pass"
 
   - name: "APT - install 'docker-ce'"
     apt:
@@ -51,7 +53,7 @@
     apt:
       name: "docker-compose"
       update_cache: yes
-      state: present
+      state: latest
 
 
 
@@ -108,7 +110,13 @@
     docker_service:
       project_src: /vagrant/
       state: present
-    
+
+#  - name: "generate a gpg2 key"
+#    shell: gpg2 --full-generate-key
+#This step needs to be done manually
+#After this you need to gpg2 -k to list the key
+#Copy the line labeled with [uid] into pass init "generated key"
+
 
 
 #  name: play
