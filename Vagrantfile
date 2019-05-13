@@ -40,8 +40,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
 #  config.vm.network "public_network", ip: "192.168.227.154"
-  config.vm.network "public_network"
-  #, bridge: "Intel(R) 82579LM Gigabit Network Connection"
+  config.vm.network "public_network", bridge: "Intel(R) 82579LM Gigabit Network Connection"
 
   #, ip: "10.210.8.147"
   config.vm.hostname="ansible.controller"

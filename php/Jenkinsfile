@@ -6,7 +6,7 @@ node {
 
         git(
         url: 'https://github.globant.com/lucas-ducau/DevOps-Academy.git',
-        credentialsId: 'github_globant')
+        credentialsId: 'github-globant')
     }
 
     stage('Build image') {

@@ -4,7 +4,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 ##################################################
 
-- hosts: all
+- hosts: localhost
   become: true
 #  vars:
 #    ansible_python_interpreter: "/usr/bin/env python3"
@@ -64,7 +64,8 @@
 
   - name: "Add Jenkins key"
     apt_key:
-      url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+      file: /vagrant/jenkins.io.key
+      #url: "https://pkg.jenkins.io/debian/jenkins.io.key"
       state: present
 
   - name: "Add Jenkins repo"
@@ -107,6 +108,7 @@
     docker_service:
       project_src: /vagrant/
       state: present
+    
 
 
 #  name: play
