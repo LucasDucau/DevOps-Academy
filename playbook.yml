@@ -46,17 +46,14 @@
     apt:
       name: "docker-ce"
       update_cache: yes
-      
+
   - name: "update docker-compose"
     apt:
       name: "docker-compose"
       update_cache: yes
       state: present
 
-  - name: "docker-compose up"
-    docker_service:
-      project_src: /vagrant/
-      state: present
+
 
 #  - name: "Install JDK"
 #    apt:
@@ -83,7 +80,35 @@
   - name: "Ensure Jenkins is running"
     service:
       name: "jenkins"
-      state: "started"
+      state: started
+
+#  - name: "Create docker group"
+#    shell: "groupadd docker"
+#    become: yes
+
+  - name: "Add jenkins to the group"
+    shell: "gpasswd -a jenkins docker"
+    become: yes
+
+  - name: "restart docker"
+    shell: "service docker restart"
+    become: yes
+
+  - name: "apply changes to groups"
+    shell: "newgrp docker"
+    become: yes
+
+  - name: "restart Jenkins"
+    service:
+      name: "jenkins"
+      state: restarted
+
+  - name: "docker-compose up"
+    docker_service:
+      project_src: /vagrant/
+      state: present
+
+
 #  name: play
 #  hosts: localhost
 #  tasks:
