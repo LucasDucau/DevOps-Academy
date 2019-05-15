@@ -10,33 +10,35 @@ services:
     networks:
       all_connected:
         ipv4_address: 172.20.0.9
+
+#    networks:
+#      all_connected:
+#        ipv4_address: 172.20.0.8
   wordpress:
+    #image: wordpress
     build: ./wordpress
-    volumes:
-      - /wordpress/:/wordpress-app/
+    restart: always
     ports:
-      - 8087:80
+      - 8089:80
 #    environment:
 #      WORDPRESS_DB_HOST: db
 #      WORDPRESS_DB_USER: exampleuser
 #      WORDPRESS_DB_PASSWORD: examplepass
 #      WORDPRESS_DB_NAME: exampledb
-    networks:
-      all_connected:
-        ipv4_address: 172.20.0.8
 
   db:
+#    image: mysql:5.7
     build: ./sql
-    volumes:
-      - /sql:/sql-app/
+    restart: always
 #    environment:
 #      MYSQL_DATABASE: exampledb
 #      MYSQL_USER: exampleuser
 #      MYSQL_PASSWORD: examplepass
 #      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    networks:
-      all_connected:
-        ipv4_address: 172.20.0.7
+
+#    networks:
+#      all_connected:
+#        ipv4_address: 172.20.0.7
 
 #  jenkins:
 #    build: ./jenkins

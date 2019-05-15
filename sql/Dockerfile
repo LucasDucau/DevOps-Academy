@@ -1,5 +1,5 @@
-FROM mysql:5.7  
-WORKDIR /sql/
+FROM mysql:5.7
+
 ENV MYSQL_DATABSE="exampledb"
 ENV MYSQL_USER="exampleuser"
 ENV MYSQL_PASSWORD="examplepass"
