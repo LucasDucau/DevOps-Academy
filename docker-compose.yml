@@ -40,16 +40,17 @@ services:
 #      all_connected:
 #        ipv4_address: 172.20.0.7
 
-#  jenkins:
+  jenkins:
 #    build: ./jenkins
-#    ports:
-#      - 8050:8080
-#      - 50000:50000
-#    volumes:
-#      - /jenkins_home/:/var/jenkins_home/
-#    networks:
-#      all_connected:
-#        ipv4_address: 172.20.0.6
+    image: jenkins/jenkins:lts
+    ports:
+      - 8050:8080
+      - 50000:50000
+    volumes:
+      - /jenkins_home/:/var/jenkins_home/
+    networks:
+      all_connected:
+        ipv4_address: 172.20.0.6
 
   golang:
     #image: golang
