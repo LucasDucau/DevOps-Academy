@@ -1,6 +1,12 @@
 FROM wordpress
 COPY . .
-ENV WORDPRESS_DB_HOST="db"
-ENV WORDPRESS_DB_USER="exampleuser"
-ENV WORDPRESS_DB_PASSWORD="examplepass"
-ENV WORDPRESS_DB_NAME="exampledb"
+
+
+
+
+
+
+#ENV WORDPRESS_DB_HOST="db"
+#ENV WORDPRESS_DB_USER="exampleuser"
+#ENV WORDPRESS_DB_PASSWORD="examplepass"
+#ENV WORDPRESS_DB_NAME="exampledb"
