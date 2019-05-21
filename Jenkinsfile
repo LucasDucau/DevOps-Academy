@@ -36,7 +36,7 @@ node ('docker-agent') {
 
             sh  'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
-           
+
          }
 
     stage('Push images') {
@@ -47,10 +47,11 @@ node ('docker-agent') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
+            }
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app_sql.push("${env.BUILD_NUMBER}")
             app_sql.push("latest")
-        }
+
     }
 }
   /*  stage('Clean up')
