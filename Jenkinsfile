@@ -20,7 +20,7 @@ node ('docker-agent') {
        runningapp = app.run("-p 9500:80")
 
 
-       }
+       
 
        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
 
