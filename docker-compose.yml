@@ -82,8 +82,8 @@ services:
   jenkins:
     build: ./jenkins
     privileged: true
-    environment:
-            - JENKINS_OPTS='--prefix=/jenkins'
+#    environment:
+#            - JENKINS_OPTS='--prefix=/jenkins'
 #    image: jenkins/jenkins:lts
     ports:
       - 8050:8080
@@ -110,8 +110,8 @@ services:
 
 
 
-networks:
-  all_connected:
-    ipam:
-      config:
-        - subnet: 172.21.0.0/24
+#networks:
+#  all_connected:
+#    ipam:
+#      config:
+#        - subnet: 172.21.0.0/24

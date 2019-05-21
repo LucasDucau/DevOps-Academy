@@ -16,17 +16,19 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
-        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
+       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
+//        app = docker.build './wordpress/'
+       app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
+//        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
     }
 
     stage('Test wordpress') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-       /**app.inside {
+       app.inside {
              sh 'cd /var/www/html/ && ./wp_test.sh'
-        }**/
+        }
     }
 
     stage('Push images') {
@@ -43,8 +45,8 @@ node {
         }
     }
 }
-    stage('Clean up')
-    {
+  /*  stage('Clean up')
+   {
         sh 'docker system prune -f -a --volumes'
-    }
+    }*/
 }
