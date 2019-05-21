@@ -15,7 +15,7 @@ node ('docker-agent') {
     stage('Build and test images') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
+       pushapp = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
        app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
 
 
@@ -44,15 +44,18 @@ node ('docker-agent') {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+
+
+         sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
+      /*  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            pushapp.push("${env.BUILD_NUMBER}")
+            pushapp.push("latest")
             }
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app_sql.push("${env.BUILD_NUMBER}")
             app_sql.push("latest")
 
-    }
+    } */
 }
   /*  stage('Clean up')
    {
