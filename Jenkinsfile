@@ -17,7 +17,7 @@ node ('docker-agent') {
          * docker build on the command line */
 
        app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").withRun('-p 9500:80'){ c ->
-        sh 'sleep 60'
+
         sh 'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
        }
 //        app = docker.build './wordpress/'
