@@ -16,7 +16,7 @@ node ('docker-agent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
        pushapp = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
-       app = docker.build("hub.docker.com/lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
+       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
 
 
 
@@ -46,7 +46,7 @@ node ('docker-agent') {
          * Pushing multiple tags is cheap, as all the layers are reused. */
 
 
-         sh "docker push hub.docker.com/lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
+         sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
       /*  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             pushapp.push("${env.BUILD_NUMBER}")
             pushapp.push("latest")
