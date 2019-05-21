@@ -16,11 +16,11 @@ node ('docker-agent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
-       runningapp = app.run("-p 9500:80")
+       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
 
 
-       
+
+
 
        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
 
@@ -31,7 +31,7 @@ node ('docker-agent') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-     runningapp.inside {
+         app.inside {
 
 
   sh  'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
