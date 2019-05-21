@@ -31,12 +31,12 @@ node ('docker-agent') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-         app.inside {
 
 
-  sh  'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
-           }
+            sh  'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+
+           
          }
 
     stage('Push images') {
