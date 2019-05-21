@@ -19,10 +19,17 @@ node ('docker-agent') {
        app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").withRun('-p 9500:80'){ c ->
 
         sh 'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
        }
-//        app = docker.build './wordpress/'
+
        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
-//        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql")
+
+       docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+           app_sql.push("${env.BUILD_NUMBER}")
+           app_sql.push("latest")
+
     }
 
  /*   stage('Test wordpress') {
