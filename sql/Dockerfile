@@ -1,9 +1,11 @@
 FROM mysql:5.7
 
-#ENV MYSQL_ROOT_PASSWORD: somewordpress
-#ENV MYSQL_DATABASE: wordpress
-#ENV MYSQL_USER: wordpress
-#ENV MYSQL_PASSWORD: wordpress
+
+
+ENV MYSQL_ROOT_PASSWORD: somewordpress
+ENV MYSQL_DATABASE: wordpress
+ENV MYSQL_USER: wordpress
+ENV MYSQL_PASSWORD: wordpress
 
 #ENV MYSQL_DATABSE="exampledb"
 #ENV MYSQL_USER="exampleuser"
