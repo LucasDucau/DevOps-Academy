@@ -16,7 +16,7 @@ node ('docker-agent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
        pushapp = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/")
-       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
+       app = docker.build("hub.docker.com/lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 9500:80")
 
 
 
