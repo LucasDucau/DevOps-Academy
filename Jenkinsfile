@@ -50,6 +50,7 @@ try{
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
              sh "docker login -u ${USERNAME} -p ${PASSWORD}"
              sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_ID}"
+             sh "docker push lucasducau/sql_qqqq:${env.BUILD_ID}"
         /*     app.push("${env.BUILD_ID}")
              app.push("latest")*/
             }
