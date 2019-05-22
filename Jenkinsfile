@@ -39,7 +39,7 @@ node ('docker-agent') {
 
          }
 
-    stage('Push images') {
+try{    stage('Push images') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
@@ -57,7 +57,11 @@ node ('docker-agent') {
             app_sql.push("latest")
    sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
     } */
+} catch (Exception e)
+{
+  echo "push failed"
 }
+
 stage('Clean up'){
     sh 'docker rm -f lucasducau/wordpress_qqqq:${env.BUILD_ID}'
     sh 'docker rm -f lucasducau/sql_qqqq:${env.BUILD_ID}'
