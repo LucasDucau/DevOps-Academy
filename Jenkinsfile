@@ -58,14 +58,14 @@ try{
    sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
     } */
             }
-  } 
+  }
   catch (Exception e)
   {
   echo "push failed"
   }
 
 stage('Clean up'){
-    sh 'docker rm -f lucasducau/wordpress_qqqq:${env.BUILD_ID}'
-    sh 'docker rm -f lucasducau/sql_qqqq:${env.BUILD_ID}'
+    app.stop()
+
   }
 }
