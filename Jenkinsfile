@@ -34,7 +34,7 @@ node ('docker-agent') {
 
 
 
-            sh  'curl http://10.210.8.106:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+            sh  'curl http://10.210.8.34:9500/ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
 
          }
@@ -58,8 +58,8 @@ node ('docker-agent') {
    sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
     } */
 }
-  /*  stage('Clean up')
-   {
-        sh 'docker system prune -f -a --volumes'
-    }*/
+stage('Clean up'){
+    sh 'docker rm -f lucasducau/wordpress_qqqq:${env.BUILD_ID}'
+    sh 'docker rm -f lucasducau/sql_qqqq:${env.BUILD_ID}'
+  }
 }
