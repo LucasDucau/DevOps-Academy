@@ -4,7 +4,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 ##################################################
 
-- hosts: localhost
+- hosts: all
   become: true
 #  vars:
 #    ansible_python_interpreter: "/usr/bin/env python3"
@@ -48,30 +48,30 @@
       update_cache: yes
       state: latest
 
-  - name: "give /jenkins_home correct ownership"
-    shell:
-      chown -R 1000 /jenkins_home/
-    become: yes
+#  - name: "give /jenkins_home correct ownership"
+#    shell:
+#      chown -R 1000 /jenkins_home/
+#    become: yes
 
-  - name: "edit daemon.json to export docker api"
-    shell:
-       'echo {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]} >> /etc/docker/daemon.json'
-    become: yes
+#  - name: "edit daemon.json to export docker api"
+#    shell:
+#       'echo {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]} >> /etc/docker/daemon.json'
+#    become: yes
 
-  - name: "edit docker.service override.conf"
-    shell:
-      cp /vagrant/override.conf /etc/systemd/system/docker.service.d/override.conf
-    become: yes
+#  - name: "edit docker.service override.conf"
+#    shell:
+#      cp /vagrant/override.conf /etc/systemd/system/docker.service.d/override.conf
+#    become: yes
 
-  - name: "reload daemon"
-    shell:
-       systemctl daemon-reload
-    become: yes
-
-  - name: restart docker service
-    shell:
-       systemctl restart docker.service
-    become: yes
+#  - name: "reload daemon"
+#    shell:
+#       systemctl daemon-reload
+#    become: yes
+#
+#  - name: restart docker service
+#    shell:
+#       systemctl restart docker.service
+#    become: yes
 
 
 
