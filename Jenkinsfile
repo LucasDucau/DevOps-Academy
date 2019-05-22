@@ -39,14 +39,14 @@ node ('docker-agent') {
 
          }
 
-try{    stage('Push images') {
+try{
+     stage('Push images') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-             app.push("${env.BUILD_NUMBER}")
-           }
+             app.push("${env.BUILD_NUMBER}") }
 
       /*  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             pushapp.push("${env.BUILD_NUMBER}")
@@ -57,10 +57,12 @@ try{    stage('Push images') {
             app_sql.push("latest")
    sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_NUMBER}"
     } */
-} catch (Exception e)
-{
+            }
+  } 
+  catch (Exception e)
+  {
   echo "push failed"
-}
+  }
 
 stage('Clean up'){
     sh 'docker rm -f lucasducau/wordpress_qqqq:${env.BUILD_ID}'
