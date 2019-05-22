@@ -38,7 +38,12 @@ try{
 
 
          }
-} catch (Exception e){echo "Tests failed"}
+} catch (Exception e){
+  app.stop()
+  app_sql.stop()
+  echo "Tests failed"
+  sh 'exit 1'
+}
 try{
      stage('Push images') {
         /* Finally, we'll push the image with two tags:
@@ -73,6 +78,7 @@ try{
 
 stage('Clean up'){
     app.stop()
+    app_sql.stop()
 
   }
 }
