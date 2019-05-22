@@ -26,7 +26,7 @@ node ('docker-agent') {
 
 
     }
-
+try{
     stage('Test wordpress') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
@@ -38,7 +38,7 @@ node ('docker-agent') {
 
 
          }
-
+} catch (Exception e){echo "Tests failed"}
 try{
      stage('Push images') {
         /* Finally, we'll push the image with two tags:
