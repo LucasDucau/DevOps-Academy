@@ -1,3 +1,11 @@
+
+
+#FALTA STOPPEAR EL DOCKER, CORRER sudo dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 Y DESPUES ARRANCARLO DE NUEVO
+
+
+
+
+
 ---
 ##################################################
 # This standalone playbook uses Docker's official Ubuntu 18.04 repository
