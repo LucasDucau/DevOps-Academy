@@ -34,7 +34,7 @@ try{
 
 
 
-          sh  'curl http://10.210.8.34:8089/2019/05/23/ | grep LUCASQ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+          sh  'curl http://10.210.8.34:9500/2019/05/23/ | grep LUCASQ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
 
          }
