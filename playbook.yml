@@ -48,6 +48,11 @@
       update_cache: yes
       state: latest
 
+  - name: "allow the current user to use docker"
+    shell:
+      usermod -aG docker $USER
+    become: yes
+
 #  - name: "give /jenkins_home correct ownership"
 #    shell:
 #      chown -R 1000 /jenkins_home/
