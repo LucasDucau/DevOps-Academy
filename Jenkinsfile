@@ -17,7 +17,7 @@ node ('docker-agent') {
          * docker build on the command line */
        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql/").run("--name db -v /home/lucas/midatita/:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=somewordpress -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress")
        app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 8089:80 -e WORDPRESS_DB_HOST=db:3306 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress --link db")
-       sh 'sleep 120'
+
 
 
 
