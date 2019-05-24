@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"https://github.globant.com/lucas-ducau/mux"
 )
 
 func main() {
