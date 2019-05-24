@@ -2,6 +2,7 @@ FROM golang:1.8
 
 WORKDIR /go/src/app
 COPY ./v2 .
+COPY ./v2/mux/ /go/src/github.com/gorilla/mux
 #ENV GOPATH=/go/src/app
 
 RUN go get -d -v ./...
