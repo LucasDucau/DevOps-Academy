@@ -70,7 +70,7 @@ try{
   }
 
 stage('Clean up'){
-    app.stop()
+    app_golang.stop()
 
 
   }
