@@ -12,7 +12,7 @@ node ('docker-agent') {
         credentialsId: 'github-globant')
     }
 
-    stage('Build and test images') {
+    stage('Build images') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
@@ -20,7 +20,7 @@ node ('docker-agent') {
 
     }
 try{
-    stage('Test wordpress') {
+    stage('Test golang') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
