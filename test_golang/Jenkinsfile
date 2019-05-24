@@ -1,6 +1,6 @@
 node ('docker-agent') {
-    def app
-    def app_sql
+    def app_golang
+
 
 
     stage('Clone repository') {
@@ -16,14 +16,7 @@ node ('docker-agent') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-       app = docker.build("lucasducau/wordpress_qqqq:${env.BUILD_ID}","./wordpress/").run("-p 8089:80 -e WORDPRESS_DB_HOST=db:3306 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress --link db")
-
-
-
-
-
-
-
+       app_golang = docker.build("lucasducau/golang_qqqq:${env.BUILD_ID}","./golang/").run("-p 8081:8081")
 
     }
 try{
@@ -34,13 +27,13 @@ try{
 
 
 
-          sh  'curl http://10.210.8.34:8089/2019/05/23/ | grep LUCASQ && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+          sh  'curl http://10.210.8.34:8081/ | grep Hello && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
 
          }
 } catch (Exception e){
-  app.stop()
-  app_sql.stop()
+  app_golang.stop()
+
   echo "Tests failed"
   sh 'exit 1'
 }
@@ -54,8 +47,8 @@ try{
 
          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
              sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-             sh "docker push lucasducau/wordpress_qqqq:${env.BUILD_ID}"
-             sh "docker push lucasducau/sql_qqqq:${env.BUILD_ID}"
+             sh "docker push lucasducau/golang_qqqq:${env.BUILD_ID}"
+
         /*     app.push("${env.BUILD_ID}")
              app.push("latest")*/
             }
@@ -78,7 +71,7 @@ try{
 
 stage('Clean up'){
     app.stop()
-    app_sql.stop()
+
 
   }
 }
