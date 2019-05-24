@@ -1,0 +1,23 @@
+node ('docker-agent') {
+    def app_golang
+
+
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        git(
+        branch: 'master',
+        url: 'https://github.globant.com/lucas-ducau/DevOps-Academy.git',
+        credentialsId: 'github-globant')
+    }
+
+    stage('Build and deploy golang app') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+       app_golang = docker.build("lucasducau/golang_qqqq:${env.BUILD_ID}","./golang/").run("-p 8081:8081")
+
+    }
+
+}
