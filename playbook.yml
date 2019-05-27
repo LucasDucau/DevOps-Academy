@@ -13,7 +13,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 ##################################################
 
-- hosts: all
+- hosts:  localhost
   become: true
 #  vars:
 #    ansible_python_interpreter: "/usr/bin/env python3"
@@ -32,11 +32,11 @@
 #      update_cache: key
 #  - name: add apt-key
 #    shell:
-#      wget -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
   - name: "APT - Add Docker repository"
     apt_repository:
       repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+      #      wget -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       state: present
       filename: docker
 
@@ -57,10 +57,12 @@
       update_cache: yes
       state: latest
 
-  - name: "allow the current user to use docker"
+  - name: "allow the vagrant user to use docker"
     shell:
-      usermod -aG docker $USER
+      usermod -aG docker vagrant
     become: yes
+
+
 
 #  - name: "give /jenkins_home correct ownership"
 #    shell:
@@ -144,6 +146,17 @@
     docker_service:
       project_src: /vagrant/
       state: present
+
+#por alguna razon tiene que correr el docker-compose al menos una vez para que funcione lo de exponer la API
+  - name: stop docker
+    shell: systemctl stop docker
+    become: yes
+
+  - name: expose docker API
+    script:
+      /vagrant/expose_docker.sh
+    become: yes
+
 
 #  - name: "generate a gpg2 key"
 #    shell: gpg2 --full-generate-key
