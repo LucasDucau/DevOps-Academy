@@ -13,7 +13,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 ##################################################
 
-- hosts:  localhost
+- hosts:  all
   become: true
 #  vars:
 #    ansible_python_interpreter: "/usr/bin/env python3"
@@ -143,7 +143,7 @@
 #      state: restarted
 #
   - name: "docker-compose up"
-    docker_service:
+    docker_compose:
       project_src: /vagrant/
       state: present
 
