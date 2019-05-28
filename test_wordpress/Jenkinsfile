@@ -12,7 +12,7 @@ node ('docker-agent') {
         credentialsId: 'github-globant')
     }
 
-    stage('Build and test images') {
+    stage('Build images') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
        app_sql = docker.build("lucasducau/sql_qqqq:${env.BUILD_ID}","./sql/").run("--name db -v /home/lucas/midatita/:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=somewordpress -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress")
