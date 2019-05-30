@@ -45,6 +45,11 @@ Week 1 - DevOps culture and methodology: https://docs.google.com/presentation/d/
 
 
 
+
+
+
+
+
 # NOTES:
 
 - The step where I suggest to ```sudo chown -R 1000 /jenkins_home``` can be avoided with better system provisioning but for some reason I could never make it work properly so I used this workaround. 
