@@ -45,7 +45,7 @@ Week 1 - DevOps culture and methodology: https://docs.google.com/presentation/d/
 
 # NOTES:
 
-- The step where I suggest to ```sudo chown -R 1000 /jenkins_home``` can be avoided with better system provisioning but for some reason I could never make it work properly so I found this workaournd. 
+- The step where I suggest to ```sudo chown -R 1000 /jenkins_home``` can be avoided with better system provisioning but for some reason I could never make it work properly so I used this workaround. 
 - The Wordpress Jenkinsfile is configured to search for some persistent data I typed into my Wordpress container, if you run the project for the first time you will encounter an error.
 - To avoid this you will need to manually run the Wordpress and SQL containers, install it for the first time, and then type some random data into it, then modify the Jenkinsfile to look for it.
 
