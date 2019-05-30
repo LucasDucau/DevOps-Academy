@@ -21,7 +21,7 @@ Week 1 - DevOps culture and methodology: https://docs.google.com/presentation/d/
 
 ![dockerplugin](https://i.imgur.com/telyLWy.png)
 
-- After its installed, go to ```Manage Jenkins``` -> ```Configure System```
+- After it's installed, go to ```Manage Jenkins``` -> ```Configure System```
 - At the bottom of the screen, click on ```Add a new cloud``` -> ```Docker```, then click on ```Docker Cloud details```
 - On ```Docker Host URI``` type ```tcp://YOURIP:2375/``` and tick the ```Enabled``` box, then click ```Test Connection```
 - You should see the Docker version and it's API version.
