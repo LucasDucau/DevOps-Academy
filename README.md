@@ -1,7 +1,7 @@
 # DevOps-Academy
 DevOps Academy May 2019
 
-Week 1 - DevOps culture and methodology: https://docs.google.com/presentation/d/1zVJNZ3HgBLEi2C6yUY_vBhl9whw0D7huRZxXIPATERY/edit?usp=sharing
+Week 1 - DevOps culture and methodology: https://drive.google.com/open?id=13_Pdyzmin6qv6f_mHhgEi9BoXRRejGrb
 
 
 ## How to run this project:
