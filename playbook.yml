@@ -142,7 +142,7 @@
 #      name: "jenkins"
 #      state: restarted
 #
-  - name: "docker-compose up"
+  - name: docker-compose up
     docker_compose:
       project_src: /vagrant/
       state: present
