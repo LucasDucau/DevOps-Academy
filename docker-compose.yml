@@ -80,7 +80,7 @@ services:
 #            - JENKINS_OPTS='--prefix=/jenkins'
 #    image: jenkins/jenkins:lts
     ports:
-      - 8050:8080
+      - 80:8080
       - 50000:50000
     volumes:
       - /jenkins_home/:/var/jenkins_home/
