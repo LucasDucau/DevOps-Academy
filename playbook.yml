@@ -1,12 +1,4 @@
 
-
-#FALTA STOPPEAR EL DOCKER, CORRER sudo dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 Y DESPUES ARRANCARLO DE NUEVO
-#falta hacer que la api de go se agarre los archivos desde local en vez de tener que usar el fork en github.globant del original
-#
-
-
-
-
 ---
 ##################################################
 # This standalone playbook uses Docker's official Ubuntu 18.04 repository
@@ -15,13 +7,9 @@
 
 - hosts: localhost
   become: true
-#  vars:
-#    ansible_python_interpreter: "/usr/bin/env python3"
 
   tasks:
-#  - name: apt-get update
-#    apt:
-#      update_cache: yes
+
 
   - name: "APT - Add Docker GPG key"
     apt_key:
@@ -63,89 +51,10 @@
     become: yes
 
 
-
-#  - name: "give /jenkins_home correct ownership"
-#    shell:
-#      chown -R 1000 /jenkins_home/
-#    become: yes
-
-#  - name: "edit daemon.json to export docker api"
-#    shell:
-#       'echo {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]} >> /etc/docker/daemon.json'
-#    become: yes
-
-#  - name: "edit docker.service override.conf"
-#    shell:
-#      cp /vagrant/override.conf /etc/systemd/system/docker.service.d/override.conf
-#    become: yes
-
-#  - name: "reload daemon"
-#    shell:
-#       systemctl daemon-reload
-#    become: yes
-#
-#  - name: restart docker service
-#    shell:
-#       systemctl restart docker.service
-#    become: yes
-
-
-
-
-
-#  - name: "Install JDK"
-#    apt:
-#      name: "openjdk-8-jdk"
-#      update_cache: yes
-#  - name: "install jdk through shell"
-##    shell: sudo apt-get install openjdk-8-jdk -y
-#
-#  - name: "Add Jenkins key"
-#    apt_key:
-#      file: /vagrant/jenkins.io.key
-      #url: "https://pkg.jenkins.io/debian/jenkins.io.key"
-#      state: present
-#
-#  - name: "Add Jenkins repo"
-#    apt_repository:
-#      repo: "deb http://pkg.jenkins.io/debian-stable binary/"
-#      state: present
-#  - name: "Install Jenkins"
-  #
-  #  apt:
-#      name: "jenkins"
-#      update_cache: yes
-#  - name: "Ensure Jenkins is running"
-#    service:
-#      ###
-#      name: "jenkins"
-#      state: started
-
-#  - name: "Create docker group"
-#    shell: "groupadd docker"
-#    become: yes
-
-#  - name: "Add jenkins to the group"
-#    become: yes
-    ##    shell: "gpasswd -a jenkins docker"
-
-#  - name: "restart docker"
-#    shell: "service docker restart"
-#    become: yes
-#
-#  - name: "apply changes to groups"
-#    shell: "newgrp docker"
-#    become: yes
-#
-#  - name: "restart Jenkins"
-#    service:
-#      name: "jenkins"
-#      state: restarted
-#
-#  - name: docker-compose up
-    #    docker_compose:
-            #project_src: /vagrant/
-      #      state: present
+  - name: docker-compose up
+    docker_compose:
+        project_src: /vagrant/
+        state: present
 
 #por alguna razon tiene que correr el docker-compose al menos una vez para que funcione lo de exponer la API
   - name: stop docker
@@ -157,20 +66,3 @@
       /vagrant/expose_docker.sh
     become: yes
 
-
-#  - name: "generate a gpg2 key"
-#    shell: gpg2 --full-generate-key
-#This step needs to be done manually
-#After this you need to gpg2 -k to list the key
-#Copy the line labeled with [uid] into pass init "generated key"
-
-
-
-#  name: play
-#  hosts: localhost
-#  tasks:
-#    - command: echo HELLO
-#  -  name: make mkdir
-#     docker_container:
-#       name: vagrant_php_1
-#       command: mkdir /qqqq
