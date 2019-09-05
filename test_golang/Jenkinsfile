@@ -7,8 +7,8 @@ node ('docker-agent') {
         /* Let's make sure we have the repository cloned to our workspace */
 
         git(
-        branch: 'master',
-        url: 'https://github.globant.com/lucas-ducau/DevOps-Academy.git',
+        branch: 'azure',
+        url: 'https://github.com/lucasducau/DevOps-Academy.git',
         credentialsId: 'github-globant')
     }
 
@@ -27,7 +27,7 @@ try{
 
 
 
-          sh  'curl http://10.210.8.34:8081/ | grep Hello && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
+          sh  'curl http://jnk.centralus.cloudapp.azure.com:8081/ | grep Hello && echo "Tests passed." || ( echo "Tests failed." && exit 1 )'
 
 
          }
